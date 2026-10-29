@@ -1,4 +1,4 @@
-import { getStudentAPI, addStudentAPI } from "./api.js";
+import { getStudentAPI, addStudentAPI, removeStudentAPI } from "./api.js";
 
 let localStudent = [];
 
@@ -12,7 +12,7 @@ const renderTable = (dataArray) => {
     if (!dataArray || dataArray.length === 0) {
         studentTableBody.innerHTML = `
             <tr>
-                <td colspan="4" style="text-align: center">
+                <td colspan="5" style="text-align: center">
                     No student records found.
                 </td>
             </tr>
@@ -28,6 +28,10 @@ const renderTable = (dataArray) => {
                 <td>${student.firstName}</td>
                 <td>${student.lastName}</td>
                 <td>${student.email}</td>
+                <td><button type="button" class="remove-button" 
+                    aria-label="Remove ${student.firstName} ${student.lastName}" 
+                    data-student-id="${student.id}">Remove</button>
+                </td>
             </tr>
         `;
     });
@@ -57,6 +61,26 @@ studentForm.addEventListener('submit', (event) => {
     renderTable(localStudent);
 
     studentForm.reset();
+});
+
+// Handles Student Removal in the table
+studentTableBody.addEventListener('click', (event) => {
+    if(!(event.target instanceof Element)) {
+        return;
+    }
+
+    const removeBtn = event.target.closest(".remove-button");
+
+    if(!removeBtn) {
+        return;
+    }
+
+    const studentID = Number(removeBtn.dataset.studentId);
+
+    removeStudentAPI(studentID);
+
+    localStudent = getStudentAPI();
+    renderTable(localStudent);
 });
 
 // Initial View
