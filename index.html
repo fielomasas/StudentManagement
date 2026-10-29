@@ -9,14 +9,6 @@
 </head>
 <body>
     <main class="page-shell">
-        <header class="topbar">
-            <a class="brand" href="#" aria-label="Student directory home">
-                <span class="brand-mark" aria-hidden="true">S</span>
-                <span>Student Directory</span>
-            </a>
-            <span class="topbar-note">Simple student records</span>
-        </header>
-
         <section class="page-heading" aria-labelledby="page-title">
             <p class="eyebrow">STUDENT MANAGEMENT</p>
             <h1 id="page-title">Student directory</h1>
@@ -72,6 +64,18 @@
             </section>
         </div>
     </main>
+    <dialog class="confirm-dialog" id="removeStudentDialog" aria-labelledby="removeDialogTitle" aria-describedby="removeDialogMessage">
+        <div class="dialog-icon" aria-hidden="true">!</div>
+        <p class="dialog-eyebrow">Removal Confirmation</p>
+        <h2 class="dialog-title" id="removeDialogTitle">Remove this student?</h2>
+        <p class="dialog-message" id="removeDialogMessage">
+            Are you sure you want to remove <strong id="studentNameToRemove"></strong> from the database?
+        </p>
+        <div class="dialog-actions">
+            <button type="button" class="dialog-button dialog-cancel" id="cancelRemove">Cancel</button>
+            <button type="button" class="dialog-button dialog-remove" id="confirmRemove">Remove student</button>
+        </div>
+    </dialog>
     <script src="./js/app.js" type="module"></script>
 </body>
 </html>

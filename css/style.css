@@ -194,6 +194,89 @@ button:focus-visible {
     background: #fff5f5;
 }
 
+.confirm-dialog {
+    width: min(420px, calc(100% - 32px));
+    padding: 28px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: #fff;
+    color: #243047;
+    box-shadow: 0 18px 55px rgba(32, 45, 70, 0.2);
+}
+
+.confirm-dialog::backdrop {
+    background: rgba(26, 35, 54, 0.42);
+    backdrop-filter: blur(2px);
+}
+
+.dialog-icon {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    place-items: center;
+    border-radius: 50%;
+    background: #fff0f0;
+    color: #a64b4b;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.dialog-eyebrow {
+    margin: 18px 0 7px;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.dialog-title {
+    margin: 0;
+    color: #27344b;
+    font-size: 20px;
+}
+
+.dialog-message {
+    margin: 10px 0 22px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.dialog-message strong {
+    color: #3b465b;
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.dialog-button {
+    width: auto;
+    min-height: 38px;
+    padding: 0 14px;
+    margin: 0;
+}
+
+.dialog-cancel {
+    border: 1px solid var(--line);
+    background: #fff;
+    color: #46536a;
+}
+
+.dialog-cancel:hover {
+    background: #f5f7fb;
+}
+
+.dialog-remove {
+    background: #a64b4b;
+}
+
+.dialog-remove:hover {
+    background: #903e3e;
+}
+
 .form-footnote {
     margin: 12px 0 0;
     color: var(--muted);

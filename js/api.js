@@ -1,6 +1,19 @@
-let mockStudentDB = [];
+let mockStudentDB = [
+    {
+        id: 2026100001,
+        firstName: "Fiel Louis",
+        lastName: "Omas-as",
+        email: "fiel.omasas@gmail.com"
+    },
+    {
+        id: 2026100002,
+        firstName: "Jane",
+        lastName: "Doe",
+        email: "jane.doe@gmail.com"
+    }
+];
 
-// FUnction to get the list of students
+// Function to get the list of students
 export function getStudentAPI() {
     return mockStudentDB;
 };
