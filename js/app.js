@@ -16,38 +16,53 @@ let studentIDToRemove = null;
 // Function to render the student table
 const renderTable = (dataArray) => {
     // Clearing the table before rendering updated records
-    studentTableBody.innerHTML = "";
+    studentTableBody.replaceChildren();
 
     // Checking if there are no student records
     if (!dataArray || dataArray.length === 0) {
-        studentTableBody.innerHTML = `
-            <tr>
-                <td colspan="5" style="text-align: center">
-                    No student records found.
-                </td>
-            </tr>
-        `;
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+        cell.colSpan = 5;
+        cell.textContent = "No student records found.";
+        row.appendChild(cell);
+        studentTableBody.appendChild(row);
         return;
     }
 
-    let rowsHTML = "";
     // Creating a table row for each student
     dataArray.forEach((student, index) => {
-        rowsHTML += `
-            <tr>
-                <td>${index + 1}</td>
-                <td>${student.firstName}</td>
-                <td>${student.lastName}</td>
-                <td>${student.email}</td>
-                <td><button type="button" class="remove-button" 
-                    aria-label="Remove ${student.firstName} ${student.lastName}" 
-                    data-student-id="${student.id}">Remove</button>
-                </td>
-            </tr>
-        `;
-    });
+        const row = document.createElement("tr");
+        const rowNumberCell = document.createElement("td");
+        const firstNameCell = document.createElement("td");
+        const lastNameCell = document.createElement("td");
+        const emailCell = document.createElement("td");
+        const actionCell = document.createElement("td");
+        const removeButton = document.createElement("button");
 
-    studentTableBody.innerHTML = rowsHTML;
+        rowNumberCell.textContent = index + 1;
+        firstNameCell.textContent = student.firstName;
+        lastNameCell.textContent = student.lastName;
+        emailCell.textContent = student.email;
+
+        removeButton.type = "button";
+        removeButton.className = "remove-button";
+        removeButton.textContent = "Remove";
+        removeButton.setAttribute(
+            "aria-label",
+            `Remove ${student.firstName} ${student.lastName}`
+        );
+        removeButton.dataset.studentId = student.id;
+
+        actionCell.appendChild(removeButton);
+        row.append(
+            rowNumberCell,
+            firstNameCell,
+            lastNameCell,
+            emailCell,
+            actionCell
+        );
+        studentTableBody.appendChild(row);
+    });
 };
 
 // Function to handle form submission
@@ -102,7 +117,8 @@ studentTableBody.addEventListener('click', (event) => {
 
     // Showing the confirmation dialog with the selected student's name
     studentIDToRemove = studentID;
-    studentNameToRemove.textContent = `${student.firstName} ${student.lastName}`;
+    studentNameToRemove.textContent = 
+    `${student.firstName} ${student.lastName}`;
     removeStudentDialog.showModal();
 });
 

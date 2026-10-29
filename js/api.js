@@ -1,3 +1,4 @@
+// Instantiate a database
 let mockStudentDB = [
     {
         id: 2026100001,
@@ -13,6 +14,8 @@ let mockStudentDB = [
     }
 ];
 
+let studentID = Date.now();
+
 // Function to get the list of students
 export function getStudentAPI() {
     return mockStudentDB;
@@ -20,8 +23,12 @@ export function getStudentAPI() {
 
 // Function to add student
 export function addStudentAPI(newStudentData) {
+    // Ensures studentID is unique
+    while (mockStudentDB.some(student => student.id === studentID)) {
+        studentID++;
+    }
     let savedStudent = {
-        id: Date.now(),
+        id: studentID,
         firstName: newStudentData.firstName,
         lastName: newStudentData.lastName,
         email: newStudentData.email
